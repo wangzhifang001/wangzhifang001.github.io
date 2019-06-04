@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Test]]></title>
     <url>%2Fpost%2Ftest%2F</url>
-    <content type="text"><![CDATA[this is a test \[ \euro \euro \pounds\\ \int_{0}^{n} 10 dx\\ 1+1=2 \]]]></content>
+    <content type="text"><![CDATA[this is a test \[ \euro \euro \pounds\\ \int_{0}^{n} 10 dx\\ 1+1=2\\ \mathscr{F}\\ \mathsbb{N} \]]]></content>
       <tags>
         <tag>test</tag>
       </tags>
