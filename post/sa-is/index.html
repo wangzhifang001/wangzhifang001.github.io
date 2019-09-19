@@ -100,18 +100,18 @@
 
 
 
-  <meta name="description" content="SA-IS算法 前言 先丢个洛谷日报的链接SA-IS算法。一下慢慢解读抄袭这篇博客。本文也可以与shadowice1984的洛谷日报同步阅读，增加解释疑惑。 SA-IS算法，全名Suffix-Array-Induce-Sort。sort```指的是一个叫诱导排序的算法（下文重点）。SA-IS算法的精髓便是基于**根据两个后缀首字母是否相同与其他已知信息来比较后缀**的诱导排序。基于诱导排序，">
+  <meta name="description" content="SA-IS算法 前言 先丢个洛谷日报的链接SA-IS算法。一下慢慢解读抄袭这篇博客。本文也可以与shadowice1984的洛谷日报同步阅读，增加解释疑惑。 SA-IS算法，全名Suffix-Array-Induce-Sort。 induce sort 指的是一个叫诱导排序的算法（下文重点）。SA-IS算法的精髓便是基于根据两个后缀首字母是否相同与其他已知信息来比较后缀的诱导排序。基于诱导排">
 <meta name="keywords" content="sa-is,模板,算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Sa-Is">
 <meta property="og:url" content="http://yoursite.com/post/sa-is/index.html">
 <meta property="og:site_name" content="wangzhifang&#39;s blog">
-<meta property="og:description" content="SA-IS算法 前言 先丢个洛谷日报的链接SA-IS算法。一下慢慢解读抄袭这篇博客。本文也可以与shadowice1984的洛谷日报同步阅读，增加解释疑惑。 SA-IS算法，全名Suffix-Array-Induce-Sort。sort```指的是一个叫诱导排序的算法（下文重点）。SA-IS算法的精髓便是基于**根据两个后缀首字母是否相同与其他已知信息来比较后缀**的诱导排序。基于诱导排序，">
+<meta property="og:description" content="SA-IS算法 前言 先丢个洛谷日报的链接SA-IS算法。一下慢慢解读抄袭这篇博客。本文也可以与shadowice1984的洛谷日报同步阅读，增加解释疑惑。 SA-IS算法，全名Suffix-Array-Induce-Sort。 induce sort 指的是一个叫诱导排序的算法（下文重点）。SA-IS算法的精髓便是基于根据两个后缀首字母是否相同与其他已知信息来比较后缀的诱导排序。基于诱导排">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-19T12:46:42.156Z">
+<meta property="og:updated_time" content="2019-09-19T12:50:23.018Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sa-Is">
-<meta name="twitter:description" content="SA-IS算法 前言 先丢个洛谷日报的链接SA-IS算法。一下慢慢解读抄袭这篇博客。本文也可以与shadowice1984的洛谷日报同步阅读，增加解释疑惑。 SA-IS算法，全名Suffix-Array-Induce-Sort。sort```指的是一个叫诱导排序的算法（下文重点）。SA-IS算法的精髓便是基于**根据两个后缀首字母是否相同与其他已知信息来比较后缀**的诱导排序。基于诱导排序，">
+<meta name="twitter:description" content="SA-IS算法 前言 先丢个洛谷日报的链接SA-IS算法。一下慢慢解读抄袭这篇博客。本文也可以与shadowice1984的洛谷日报同步阅读，增加解释疑惑。 SA-IS算法，全名Suffix-Array-Induce-Sort。 induce sort 指的是一个叫诱导排序的算法（下文重点）。SA-IS算法的精髓便是基于根据两个后缀首字母是否相同与其他已知信息来比较后缀的诱导排序。基于诱导排">
 
 
 
@@ -438,7 +438,7 @@
                 
               
 
-              <time title="创建时间：2019-09-19 20:46:20 / 修改时间：20:46:42" itemprop="dateCreated datePublished" datetime="2019-09-19T20:46:20+08:00">2019-09-19</time>
+              <time title="创建时间：2019-09-19 20:46:20 / 修改时间：20:50:23" itemprop="dateCreated datePublished" datetime="2019-09-19T20:46:20+08:00">2019-09-19</time>
             
 
             
@@ -496,7 +496,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">16k</span>
+                <span title="本文字数">15k</span>
               
 
               
@@ -510,7 +510,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">15 分钟</span>
+                <span title="阅读时长">14 分钟</span>
               
             </div>
           
@@ -533,7 +533,322 @@
         <h1 id="sa-is算法">SA-IS算法</h1>
 <h2 id="前言">前言</h2>
 <p>先丢个洛谷日报的链接<a href="https://www.luogu.org/blog/ShadowassIIXVIIIIV/on-hou-zhui-shuo-zu-sa-is-suan-fa" target="_blank" rel="noopener">SA-IS算法</a>。一下慢慢解读<del>抄袭</del>这篇博客。本文也可以与<a href="https://www.luogu.org/space/show?uid=56384" target="_blank" rel="noopener">shadowice1984</a>的洛谷日报同步阅读，<del>增加</del>解释疑惑。</p>
-<p>SA-IS算法，全名<strong>S</strong>uffix-<strong>A</strong>rray-<strong>I</strong>nduce-<strong>S</strong>ort。<figure class="highlight plain"><figcaption><span>sort```指的是一个叫诱导排序的算法（下文重点）。SA-IS算法的精髓便是基于**根据两个后缀首字母是否相同与其他已知信息来比较后缀**的诱导排序。基于诱导排序，本算法可在$O(|S|)$的时间复杂度内进行后缀排序。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 具体实现</span><br><span class="line"></span><br><span class="line">#### $S$型后缀与$L$型后缀</span><br><span class="line"></span><br><span class="line">#### 全文阅读注释</span><br><span class="line"></span><br><span class="line">&gt; 为了方便我们推导各种各样的性质我们先把一个字符串的后缀分成两类,S型后缀和L型后缀，并且为了规避各种各样的分情况讨论，我们在字符串的后面需要加一个哨兵字符“#”。</span><br><span class="line"></span><br><span class="line">好吧，我承认，加个~~烧饼~~哨兵字符的确可以方便不少，因为第$|S|$（下文中字符串长度$|S|$也会记作$n$）个字符开始的后缀（第$i$个字符开始的后缀~~在原文中~~也记作：后缀$i$）需要用到后缀$n+1$的诸多信息，~~为了让代码短一点~~。哨兵字符的大小为比该字符串任意字符小的字符（不影响排序结果）。</span><br><span class="line"></span><br><span class="line">记后缀$i$为$Suf(i)$</span><br><span class="line"></span><br><span class="line">记一个后缀$S$的类型为$S.type$。（可以跳过去先看一下定义）</span><br><span class="line"></span><br><span class="line">**例子**： 若$S=$&quot;$banana$&quot;，则$Suf(4)=$&quot;$ana$&quot;，$Suf(4).type=S$。</span><br><span class="line"></span><br><span class="line">另，记排序后的后缀的开头位置构成的数组为$sa$（即[洛谷模板题](https://www.luogu.org/problem/P3809)的答案数组），编号由$1$开始，$sa_1$明显是指哨兵字符。</span><br><span class="line"></span><br><span class="line">注：关于时间复杂度的具体内容（如证明），本文暂且留坑。</span><br><span class="line"></span><br><span class="line">注：由于本人代码太丑，贴原博客代码</span><br><span class="line"></span><br><span class="line">#### 定义</span><br><span class="line"></span><br><span class="line">&gt; &quot;#&quot;是一个$S$型后缀。</span><br><span class="line">&gt;</span><br><span class="line">&gt; 如果后缀$i$比后缀$i+1$小，$i$就是$S$型后缀，否则就是$L$型后缀。</span><br><span class="line"></span><br><span class="line">#### 性质</span><br><span class="line"></span><br><span class="line">##### 推论1：若$S_i=S_&#123;i+1&#125;$，则$Suf(i).type=Suf(i+1).type$</span><br><span class="line"></span><br><span class="line">证明：</span><br><span class="line"></span><br><span class="line">由$S_i=S_&#123;i+1&#125;$，则比较$Suf(i)$与$Suf(i+1)$相当于后移一位比较$Suf(i+1)$与$Suf(i+2)$。由后缀类型定义即可证得。</span><br><span class="line"></span><br><span class="line">**注：本文证明以提供思路为主要目的，故并不形式。**希望大佬莫喷。</span><br><span class="line"></span><br><span class="line">##### 推论2：若$S_i=S_j$且$Suf(i).type=S$且$Suf(j).type=L$，则$Suf(i)&gt;Suf(j)$</span><br><span class="line"></span><br><span class="line">证明：</span><br><span class="line"></span><br><span class="line">由$S_i=S_j$，则须比较$Suf(i+1)$和$Suf(j+1)$。由于$Suf(i).type=S$，则$S_&#123;i+1&#125;\le S_i$，由于$Suf(j).type=L$，则$S_&#123;j+1&#125;\le S_j$。</span><br><span class="line"></span><br><span class="line">已知$a_&#123;j+1&#125;\le a_j=a_i \le a_&#123;i+1&#125;$，若$a_i \ne a_&#123;i+1&#125;$或$a_j\ne a_&#123;j+1&#125;$，结论显然成立。</span><br><span class="line"></span><br><span class="line">若$a_&#123;j+1&#125;=a_j=a_i=a_&#123;i+1&#125;$，由**推论1**，$Suf(i+1).type=S,Suf(j+1).type=L$，问题递归转化为$Suf(i+1)$与$Suf(j+1)$。</span><br><span class="line"></span><br><span class="line">由数学归纳法，我们只用证明边界情况：字符串末尾。</span><br><span class="line"></span><br><span class="line">如果$i&lt;j$，即类型为$L$的$j$判断到了边界，结论明显成立。</span><br><span class="line"></span><br><span class="line">如果$i=j$，明显矛盾。</span><br><span class="line"></span><br><span class="line">如果$i&gt;j$，则是$i$碰到了边界，即从$i$到$n$全部是$S$型后缀且相等，则不满足$Suf(i)&lt;Suf(i+1)$，与$S$型后缀定义矛盾。</span><br><span class="line"></span><br><span class="line">#### 代码实现</span><br><span class="line"></span><br><span class="line">我们可以先从右到左扫一遍，因为已经处理出来后面每一个后缀的类型，由**推论1**我们就可以求出当前位置的类型。时间复杂度$\Theta(n)$</span><br><span class="line"></span><br><span class="line">### 诱导排序(induce sort)</span><br><span class="line"></span><br><span class="line">&gt; sais的核心是诱导排序，但是诱导排序的正确性是基于归纳法证明的.所以这个算法不太好理解，它很简单，但是你可能理解不了为什么它是对的。</span><br><span class="line">&gt;</span><br><span class="line"></span><br><span class="line">笔者就花了很长时间感性理解这个算法。从现在开始，建议不懂的可以暂时跳过，到后面出问题了或者读到末尾还没懂再回头看，或许会好理解不少。</span><br><span class="line"></span><br><span class="line">由**推论2**，易得在后缀数组中首字母相同时$L$型后缀在$S$型后缀前面。</span><br><span class="line"></span><br><span class="line">那么我们不妨可以将$L$型后缀和$S$型后缀**分别排序**，最后用归并排序的思想将后缀数组处理完成。</span><br><span class="line"></span><br><span class="line">现在我们从$L$型后缀开始，思考一下如何对相同类型进行后缀排序。</span><br><span class="line"></span><br><span class="line">如果两个$L$型后缀的首字母不一样，那么很好处理，否则我们就递归比较$(i+1,j+1)$。基于这个思想直接处理有点麻烦，不如我们：</span><br><span class="line"></span><br><span class="line">#### 总体思路：</span><br><span class="line"></span><br><span class="line">**假设**已经知道了部分后缀的大小关系（后文重点介绍，学这个算法切忌着急），然后我们可以将已知的最小的后缀为$Suf(i)$，那么如果$Suf(i-1).type=L$，即$Suf(i-1)&gt;Suf(i)$，将$i-1$加入我们现在已知的集合中，然后将$i$放入排序数组，并从集合删除，维护这个集合。最后我们可以知道与初始集合有关的所有$L$型后缀之间的关系。</span><br><span class="line"></span><br><span class="line">&gt; 如果用堆来维护刚才的过程，复杂度带log无法接受，但是我们有一个巧妙的做法可以完成上述过程。</span><br><span class="line"></span><br><span class="line">~~*精益求精的shadowice巨佬！！！*~~</span><br><span class="line"></span><br><span class="line">**（依然维持刚才的假设。）**我们直接维护$sa$数组，先记录每个首字母开头有多少后缀，便可以得知首字母为$i$的后缀从$sa$数组的哪里开始和结束。代码实现时先把$sa$初始化为$-1$。然后我们刚才插入的过程便可以直接在数组上维护！（具体代码实现部分会有介绍。）</span><br><span class="line"></span><br><span class="line">我们从左到右扫一遍$sa$数组，如果第$i$个位置已知，且$Suf(sa_i-1).type=L$，我们就将$L$型后缀$Suf(sa_i-1)$插入到下一个位置。</span><br><span class="line"></span><br><span class="line">&gt;(你可以把插入的过程理解为将sa数组按照首字母划分为若干个桶，然后将这个后缀push到对应的桶里去，代码上写起来和倍增法的基排没啥区别）</span><br><span class="line"></span><br><span class="line">这样子，我们便可以**在假设的基础上**，用$\Theta(n)$的时间复杂度实现上述算法。</span><br><span class="line"></span><br><span class="line">如果我们知道所有$S$型后缀，我们便可以用上述算法得到所有$L$型数组；对称的，知道所有$L$型后缀，也可以得到所有$S$型后缀。（这就是诱导排序的主体部分）</span><br><span class="line"></span><br><span class="line">原理很简单：以从$S$型导入到$L$型为例，由于最后一个不是$L$型，每一个$L$型后缀$Suf(i)$都可以由$Suf(i+1)$得到，因为是$L$型，所以$Suf(i)&gt;Suf(i+1)$是肯定成立的（具体类似于**推论2**，可以由**推论1**证明，有兴趣可以自证）。这样子，$L$型后缀按顺序插入，不会有遗漏。</span><br><span class="line"></span><br><span class="line">$S$型后缀的加入则要换个顺序，道理是对称的。</span><br><span class="line"></span><br><span class="line">&gt; 这样只要我们一开始掌握的后缀的大小信息无误并且足够的多，我们就能正确的还原出一个有序的sa数组，具体点，我们知道了关于S型的大小信息可以生成L型后缀的信息，知道了L型后缀的信息也可以还原出S型后缀的所有信息。</span><br><span class="line"></span><br><span class="line">但是，前提是**刚才的假设**……</span><br><span class="line"></span><br><span class="line">（只要你知道了诱导排序的作用就请先看下去，后面有lms子串诱导排序的模拟过程）</span><br><span class="line"></span><br><span class="line">#### 全文重点！！！</span><br><span class="line"></span><br><span class="line">##### lms子串与lms后缀</span><br><span class="line"></span><br><span class="line">为了方便处理这个棘手的问题，我们先引入一个概念：lms子串</span><br><span class="line"></span><br><span class="line">诱导排序算法允许我们从$L$诱导到$S$，也允许从$S$诱导到$L$。但是诱导时并不需要全部的信息，我们只用扫描方向边界的信息即可。具体而言：</span><br><span class="line"></span><br><span class="line">&gt; 把诱导排序算法的正确性证明念一遍，我们会发现关键在于递归比较$(Suf(i+1),Suf(j+1))$的大小关系这一段，如果$Suf(i)$和都是$Suf(j)$都是L型后缀，我们不能保证$(Suf(i+1),Suf(j+1))$都是L型后缀。</span><br><span class="line"></span><br><span class="line">但是，我们也仅仅需要左边是$L$型后缀的$S$型后缀的大小信息了。我们把这样的后缀定义为lms后缀(**L**eft-**M**ost-**S**uffix)。</span><br><span class="line"></span><br><span class="line">我们可以把诱导排序升级到2.0版本：**假设我们已经知道了所有lms后缀的大小关系，**先从lms后缀大小关系诱导出$L$型后缀的大小关系，再诱导到$S$型。这样我们就可以知道最终的答案了。</span><br><span class="line"></span><br><span class="line">由于已经有脑洞打开的神仙解决了这个难题假设，我们就可以省许多脑细胞了：</span><br><span class="line"></span><br><span class="line">虽然是$\Theta(n)$，但是我们依然可以**递归**！！！</span><br><span class="line"></span><br><span class="line">显然，最多有$\frac&#123;n&#125;&#123;2&#125;$个lms后缀，时间复杂度即是：</span><br><span class="line">$$</span><br><span class="line">T(n)=T(\frac&#123;n&#125;&#123;2&#125;)+\Theta(n)\notag</span><br><span class="line">$$</span><br><span class="line">~~但是我们还是不会递归问题~~</span><br><span class="line"></span><br><span class="line">我们定义lms子串为从左到右数第$i$个lms后缀和$i+1$个lms后缀之间的字符串。</span><br><span class="line"></span><br><span class="line">**例子：**</span><br><span class="line"></span><br><span class="line">| $i$           | $1$  | $2$  | $3$  | $4$  | $5$  | $6$  | $7$  | $8$  | $9$  |</span><br><span class="line">| ------------- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |</span><br><span class="line">| $S_i$         | b    | a    | n    | a    | n    | a    | a    | s    | #    |</span><br><span class="line">| $Suf(i).type$ | $L$  | $S$  | $L$  | $S$  | $L$  | $S$  | $S$  | $L$  | $S$  |</span><br><span class="line">| 是否为lms     |      | 是   |      | 是   |      | 是   |      |      | 是   |</span><br><span class="line"></span><br><span class="line">lms子串为$[2,4]$、$[4,6]$和$[6,9]$</span><br><span class="line"></span><br><span class="line">**注意**：相邻两个lms子串会**重叠一个字符**。</span><br><span class="line"></span><br><span class="line">我们可以将lms子串离散化之后再按顺序拼成一个新的字符串，比如说对上面的lms子串进行离散化后变成$2$、$2$、$1$。拼成字符串&quot;221&quot;。</span><br><span class="line"></span><br><span class="line">就是把一串字符离散成一个字符（往往读入完会进行第一次离散，所有字符变成数字处理）。</span><br><span class="line"></span><br><span class="line">&gt;但是其实并没有我们想的那么显然，我们接下来会严谨的证明离散化的正确性。</span><br><span class="line">&gt;</span><br><span class="line">&gt;首先先明确一下比较lms子串的规则，我们比较两个lms子串的时候对于每一个字符同时比较字符的字典序大小和所在位置后缀的$S$$L$类型,举个例子，我们认为$(&apos;a&apos;,S)$和$(&apos;a&apos;,L)$是不相等的，尽管字符一样但是所在位置的$S$和$L$类型却不一样，同时我们认为$S$类型大于$L$类型。</span><br><span class="line">&gt;</span><br><span class="line">&gt;假设我们有两个lms后缀：第$i$个lms后缀$Suf(p_1)$和第$j$个lms后缀$Suf(p_2)$,现在我们想要比较两个后缀的大小，我们可以根据两个后缀在新字符串上第一位的字符（$S_i$和$S_j$）是否相等来进行分情况讨论。</span><br><span class="line">&gt;</span><br><span class="line">&gt;**case1:第一位的字符是相等的**</span><br><span class="line">&gt;</span><br><span class="line">&gt;我们发现新字符串上两个字符相等,等价于原来字符串上两个lms子串相等，那么既然两个lms子串相等了那么这两个子串的长度$len$必然是一样的，因此我们可以将两个后缀同时去掉长度为$len-1$的部分递归比较剩下的部分，在新字符串上也就是递归到了第$i+1$位和第$j+1$位，符合我们字符串比较的逻辑。</span><br><span class="line">&gt;</span><br><span class="line">&gt;**case2:第一位的字符是不等的**</span><br><span class="line">&gt;</span><br><span class="line">&gt;那么你可能会说:既然新字符串的两个字符都不一样了，就说明在原来的字符串上肯定有不一样的位，所以这种情况是显然的。</span><br><span class="line">&gt;</span><br><span class="line">&gt;那好像我们忽视了一种情况哎，两个lms子串代表的字符不一样是因为其中一个是另一个的前缀。</span><br><span class="line">&gt;</span><br><span class="line">&gt;这种情况下我们的算法就会锅掉，因为两个后缀明明没有分出大小我们就强行钦定一个大于另一个了。</span><br><span class="line">&gt;</span><br><span class="line">&gt;事实果真如此吗？</span><br><span class="line">&gt;</span><br><span class="line">&gt;答案是这种情况不存在，我们比较lms子串的规则是同时比较字符和$S$$L$类型的后缀，在这种情况下不存在一个lms子串是另一个的前缀，因为一个lms子串的$S$$L$类型必须是形如$SSSSLLLLS$这样的，前面是一串$S$中间是一串$L$，最后是恰好一个$S$，那么我们发现如果一个是另一个的前缀，两个串必然会在短的字符串的结尾处$S$$L$类型不匹配，从而不存在这种情况。</span><br><span class="line"></span><br><span class="line">现在就是怎么离散的问题没解决了。</span><br><span class="line"></span><br><span class="line">##### 离散化lms子串与诱导排序之间的关系</span><br><span class="line"></span><br><span class="line">&gt; 如果我们实现这一步使用的是**基数排序**那么我们将会得到传说中的KA-algorithm，但是这东西很慢啊……我们想想有没有什么优秀的排序做法。</span><br><span class="line"></span><br><span class="line">~~*好吧……*~~</span><br><span class="line"></span><br><span class="line">&gt;答案还是诱导排序，传统的诱导排序要求我们传一个有序的lms后缀数组进去，但是现在我们可以乱序传入lms后缀数组，当然诱导排序会返回一个错误的结果，</span><br><span class="line">&gt;</span><br><span class="line">&gt;但是我们断言，在返回的后缀数组当中关于lms后缀的**子序列**是按照每个lms后缀**开头的lms子串**为关键字进行排序的</span><br><span class="line"></span><br><span class="line">呃……有点难理解，我们举一个例子：</span><br><span class="line"></span><br><span class="line">$bananaas$#~~怎么又是这个串~~</span><br><span class="line"></span><br><span class="line">lms后缀的数组：</span><br><span class="line"></span><br><span class="line">| $i$     | $1$               | $2$             | $3$           | $4$      |</span><br><span class="line">| ------- | ----------------- | --------------- | ------------- | -------- |</span><br><span class="line">| $lms_i$ | $2$（$ananaas$#） | $4$（$anaas$#） | $6$（$aas$#） | $9$（#） |</span><br><span class="line"></span><br><span class="line">显然，初始是按起始位置排序的。</span><br><span class="line"></span><br><span class="line">记录每一个字符结束位置的$sum$数组（其实就是桶数组的前缀和）（为了方便理解，初始时不进行离散化，即下标为字符）：</span><br><span class="line"></span><br><span class="line">| $i$     | $&apos;$#$&apos;$ | $&apos;a&apos;$ | $&apos;b&apos;$ | $&apos;n&apos;$ | $&apos;s&apos;$ |</span><br><span class="line">| ------- | ------- | ----- | ----- | ----- | ----- |</span><br><span class="line">| $sum_i$ | $1$     | $5$   | $6$   | $8$   | $9$   |</span><br><span class="line"></span><br><span class="line">$sa$数组先按倒序（在$sa$数组中便是正序）插入lms后缀：</span><br><span class="line"></span><br><span class="line">| $i$    | $1$  | $2$  | $3$  | $4$  | $5$  | $6$  | $7$  | $8$  | $9$  |</span><br><span class="line">| ------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |</span><br><span class="line">| $sa_i$ | $9$  | $-1$ | $2$  | $4$  | $6$  | $-1$ | $-1$ | $-1$ | $-1$ |</span><br><span class="line"></span><br><span class="line">然后从左到右扫，插入$L$型后缀（此步骤最好对照后文代码进行人工模拟，加深理解，这里只展示最后结果）：</span><br><span class="line"></span><br><span class="line">| $i$    | $1$  | $2$  | $3$  | $4$  | $5$  | $6$  | $7$  | $8$  | $9$  |</span><br><span class="line">| ------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |</span><br><span class="line">| $sa_i$ | $9$  | $-1$ | $2$  | $4$  | $6$  | $1$  | $3$  | $5$  | $8$  |</span><br><span class="line"></span><br><span class="line">再根据$L$型后缀扫回来：</span><br><span class="line"></span><br><span class="line">| $i$    | $1$  | $2$  | $3$  | $4$  | $5$  | $6$  | $7$  | $8$  | $9$  |</span><br><span class="line">| ------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |</span><br><span class="line">| $sa_i$ | $9$  | $6$  | $2$  | $4$  | $7$  | $1$  | $3$  | $5$  | $8$  |</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">很明显，已经lms后缀已经按照lms子串的大小排好序了。</span><br><span class="line"></span><br><span class="line">&gt;具体点来讲依然使用归纳法证明算法正确性。</span><br><span class="line">&gt;</span><br><span class="line">&gt;我们知道初始的时候的lms数组是乱的，因此归纳的初始条件直接被打破了。</span><br><span class="line">&gt;</span><br><span class="line">&gt;但是如果我们换个命题进行归纳呢？</span><br><span class="line">&gt;</span><br><span class="line">&gt;我们一开始传进去的lms数组，如果只看开头的第一个字母，在后缀数组当中是有序的。</span><br><span class="line">&gt;</span><br><span class="line">&gt;那么在第一轮诱导过后，对于每个L型后缀，如果只看这个后缀的开头到第一个S型字符位置的位置，他们也是有序的。</span><br><span class="line">&gt;</span><br><span class="line">&gt;在第二轮诱导过后，对于每个S型后缀，它们有序的部分恰好是这个后缀的开头到第一个lms字符所在的位置，如果这个后缀是一个lms型后缀那么这个后缀有序的部分是这个后缀开头的lms字符。</span><br><span class="line">&gt;</span><br><span class="line">&gt;所以我们证明了只需要再来一轮诱导排序就可以给所有lms子串排好序，然后我们就可以很轻松的完成离散化啦~</span><br><span class="line">&gt;</span><br><span class="line">&gt;至此我们完成了SA-IS算法的最后一块拼图，此时我们已经可以尝试实现sais算法了~</span><br><span class="line"></span><br><span class="line">呃……神仙思路有点快，我们具体地继续考虑一下离散化，既然已经按照lms子串的大小排好序了，离散化lms子串实际上就只用暴力比较在目前的$sa$数组中相邻的lms子串的大小，就可以知道离散后lms子串对应的字符是否相等，大小顺序就按已经部分排好的$sa$数组来。</span><br><span class="line"></span><br><span class="line">下面给出[shadowice1984](https://www.luogu.org/space/show?uid=56384)的代码~~（注释也是她写的）~~。</span><br><span class="line"></span><br><span class="line">### 代码</span><br><span class="line"></span><br><span class="line">```cpp</span><br><span class="line">/******************************************</span><br><span class="line">这里的诱导排序函数由于需要传非常多的参数，所以使用了宏的方式来实现了一个函数</span><br><span class="line">具体的实现方式可以看下面的inds(lms)这个宏</span><br><span class="line">由于多行宏旁边写不了注释我会在行上面写注释</span><br><span class="line"></span><br><span class="line">sais的算法流程 :</span><br><span class="line"></span><br><span class="line">1.确定每个后缀的类型</span><br><span class="line"></span><br><span class="line">2.确定第i个lms后缀的编号以及编号为i的后缀是第几个lms后缀</span><br><span class="line"></span><br><span class="line">3.进行一次诱导排序给lms子串排序</span><br><span class="line"></span><br><span class="line">4.扫描一遍得到的sa数组，生成用于递归的字符串</span><br><span class="line"></span><br><span class="line">5.如果新字符串中的每一个字符都不同，后缀数组可以直接计算，此处不递归</span><br><span class="line"></span><br><span class="line">6.否则递归进行一次sais</span><br><span class="line"></span><br><span class="line">7.根据之前记录了第i个lms后缀的编号和返回的后缀数组计算lms后缀的顺序</span><br><span class="line"></span><br><span class="line">8.进行一次诱导排序并返回</span><br><span class="line"></span><br><span class="line">******************************************/</span><br><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">const int N = 1e6 + 10;</span><br><span class="line">typedef long long ll;</span><br><span class="line">template &lt;typename T&gt;</span><br><span class="line">inline void gm(T*&amp; bas, int siz, T*&amp; op) &#123;</span><br><span class="line">    op = bas;</span><br><span class="line">    bas += siz;// 这里把内存提前申请好然后用指针分配内存</span><br><span class="line">&#125;</span><br><span class="line">//这里sum表示桶的位置，cur是sum的一份copy，避免每次都要做前缀和</span><br><span class="line">// S型后缀的桶是倒着开的也要倒着扫，L型后缀的桶的是正着开的也要正着扫</span><br><span class="line">#define pus(x) (sa[cur[a[x]]--] = x)  // 插入S型后缀</span><br><span class="line">#define pul(x) (sa[cur[a[x]]++] = x)  //插入诱导排序</span><br><span class="line">//诱导排序的宏，进行了两轮诱导过程:分别是从lms诱导到L和从L诱导到S</span><br><span class="line">#define inds(lms)                                         \</span><br><span class="line">    for (int i = 1; i &lt;= n; i++) sa[i] = -1;              \</span><br><span class="line">    for (int i = 1; i &lt;= n; i++) sum[i] = 0;              \</span><br><span class="line">    for (int i = 1; i &lt;= n; i++) sum[a[i]]++;             \</span><br><span class="line">    for (int i = 1; i &lt;= n; i++) sum[i] += sum[i - 1];    \</span><br><span class="line">    for (int i = 1; i &lt;= n; i++) cur[i] = sum[i];         \</span><br><span class="line">    for (int i = m; i &gt;= 1; i--) pus(lms[i]);             \</span><br><span class="line">    for (int i = 1; i &lt;= n; i++) cur[i] = sum[i - 1] + 1; \</span><br><span class="line">    for (int i = 1; i &lt;= n; i++)                          \</span><br><span class="line">        if (sa[i] &gt; 1 &amp;&amp; !tp[sa[i] - 1])                  \</span><br><span class="line">            pul(sa[i] - 1);                               \</span><br><span class="line">    for (int i = 1; i &lt;= n; i++) cur[i] = sum[i];         \</span><br><span class="line">    for (int i = n; i &gt;= 1; i--)                          \</span><br><span class="line">        if (sa[i] &gt; 1 &amp;&amp; tp[sa[i] - 1])                   \</span><br><span class="line">            pus(sa[i] - 1);</span><br><span class="line">int sa[N];</span><br><span class="line">int sum[N];</span><br><span class="line">int cur[N];</span><br><span class="line">int rk[N];</span><br><span class="line">int A_bas[N &lt;&lt; 4];</span><br><span class="line">int* A_t;</span><br><span class="line">inline void sais(int n, int* a) &#123;</span><br><span class="line">    int* tp;            //现开数组现分配内存</span><br><span class="line">    gm(A_t, n + 1, tp);</span><br><span class="line">    int* p;</span><br><span class="line">    gm(A_t, n + 2, p);</span><br><span class="line">    tp[n] = 1;</span><br><span class="line">    //倒着扫一遍确定后缀类型</span><br><span class="line">    for (int i = n - 1; i &gt;= 1; i--) tp[i] = (a[i] == a[i + 1]) ? tp[i + 1] : (a[i] &lt; a[i + 1]);</span><br><span class="line">    //确定第i个lms后缀的编号和编号为i的后缀是第几个lms后缀</span><br><span class="line">    int m = 0;</span><br><span class="line">    for (int i = 1; i &lt;= n; i++) rk[i] = (tp[i] &amp;&amp; !tp[i - 1]) ? (p[++m] = i, m) : -1;</span><br><span class="line">    //进行一轮诱导排序，生成新的字符串</span><br><span class="line">    inds(p);</span><br><span class="line">    int tot = 0;</span><br><span class="line">    int* a1;</span><br><span class="line">    gm(A_t, m + 1, a1);</span><br><span class="line">    p[m + 1] = n;</span><br><span class="line">    //扫一遍对lms子串进行离散化</span><br><span class="line">    for (int i = 1, x, y; i &lt;= n; i++)</span><br><span class="line">        if ((x = rk[sa[i]]) != -1) &#123;</span><br><span class="line">            if (tot == 0 || p[x + 1] - p[x] != p[y + 1] - p[y]) //如果长度不一致显然不等</span><br><span class="line">                tot++;</span><br><span class="line">            //否则暴力for一遍比较两个lms串是否相等</span><br><span class="line">            else</span><br><span class="line">                for (int p1 = p[x], p2 = p[y]; p2 &lt;= p[y + 1]; p1++, p2++)</span><br><span class="line">                    if ((a[p1] &lt;&lt; 1 | tp[p1]) != (a[p2] &lt;&lt; 1 | tp[p2])) &#123;</span><br><span class="line">                        tot++;</span><br><span class="line">                        break;</span><br><span class="line">                    &#125;</span><br><span class="line">            a1[y = x] = tot;</span><br><span class="line">        &#125;</span><br><span class="line">    if (tot == m)</span><br><span class="line">        for (int i = 1; i &lt;= m; i++) sa[a1[i]] = i; //如果字符互不相同就直接计算后缀数组，否则递归</span><br><span class="line">    else</span><br><span class="line">        sais(m, a1);</span><br><span class="line">    for (int i = 1; i &lt;= m; i++) a1[i] = p[sa[i]]; //还原lms子串的顺序，进行诱导排序</span><br><span class="line">    inds(a1);</span><br><span class="line">&#125;</span><br><span class="line">char mde[N];</span><br><span class="line">int n;</span><br><span class="line">int a[N];</span><br><span class="line">int tr[300];</span><br><span class="line">char buf[20];</span><br><span class="line">int cnt;</span><br><span class="line">int main() &#123;</span><br><span class="line">    A_t = A_bas;</span><br><span class="line">    scanf(&quot;%s&quot;, mde + 1);</span><br><span class="line">    while (mde[n + 1] != &apos;\0&apos;) n++;</span><br><span class="line">    for (int i = 1; i &lt;= n; i++) tr[mde[i]] = 1;</span><br><span class="line">    for (int i = 1; i &lt; 300; i++) tr[i] += tr[i - 1];</span><br><span class="line">    for (int i = 1; i &lt;= n; i++) a[i] = tr[mde[i]] + 1;</span><br><span class="line">    a[++n] = 1;</span><br><span class="line">    sais(n, a);</span><br><span class="line">    for (int i = 2; i &lt;= n; i++) &#123;</span><br><span class="line">        int tmp = sa[i];</span><br><span class="line">        while (tmp) buf[++cnt] = tmp % 10 + 48, tmp /= 10;</span><br><span class="line">        while (cnt) putchar(buf[cnt--]);</span><br><span class="line">        putchar(&apos; &apos;);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;  //拜拜程序~</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>SA-IS算法，全名<strong>S</strong>uffix-<strong>A</strong>rray-<strong>I</strong>nduce-<strong>S</strong>ort。 <strong>induce sort</strong> 指的是一个叫诱导排序的算法（下文重点）。SA-IS算法的精髓便是基于<strong>根据两个后缀首字母是否相同与其他已知信息来比较后缀</strong>的诱导排序。基于诱导排序，本算法可在<span class="math inline">\(O(|S|)\)</span>的时间复杂度内进行后缀排序。</p>
+<h2 id="具体实现">具体实现</h2>
+<h4 id="s型后缀与l型后缀"><span class="math inline">\(S\)</span>型后缀与<span class="math inline">\(L\)</span>型后缀</h4>
+<h4 id="全文阅读注释">全文阅读注释</h4>
+<blockquote>
+<p>为了方便我们推导各种各样的性质我们先把一个字符串的后缀分成两类,S型后缀和L型后缀，并且为了规避各种各样的分情况讨论，我们在字符串的后面需要加一个哨兵字符“#”。</p>
+</blockquote>
+<p>好吧，我承认，加个<del>烧饼</del>哨兵字符的确可以方便不少，因为第<span class="math inline">\(|S|\)</span>（下文中字符串长度<span class="math inline">\(|S|\)</span>也会记作<span class="math inline">\(n\)</span>）个字符开始的后缀（第<span class="math inline">\(i\)</span>个字符开始的后缀<del>在原文中</del>也记作：后缀<span class="math inline">\(i\)</span>）需要用到后缀<span class="math inline">\(n+1\)</span>的诸多信息，<del>为了让代码短一点</del>。哨兵字符的大小为比该字符串任意字符小的字符（不影响排序结果）。</p>
+<p>记后缀<span class="math inline">\(i\)</span>为<span class="math inline">\(Suf(i)\)</span></p>
+<p>记一个后缀<span class="math inline">\(S\)</span>的类型为<span class="math inline">\(S.type\)</span>。（可以跳过去先看一下定义）</p>
+<p><strong>例子</strong>： 若<span class="math inline">\(S=\)</span>"<span class="math inline">\(banana\)</span>"，则<span class="math inline">\(Suf(4)=\)</span>"<span class="math inline">\(ana\)</span>"，<span class="math inline">\(Suf(4).type=S\)</span>。</p>
+<p>另，记排序后的后缀的开头位置构成的数组为<span class="math inline">\(sa\)</span>（即<a href="https://www.luogu.org/problem/P3809" target="_blank" rel="noopener">洛谷模板题</a>的答案数组），编号由<span class="math inline">\(1\)</span>开始，<span class="math inline">\(sa_1\)</span>明显是指哨兵字符。</p>
+<p>注：关于时间复杂度的具体内容（如证明），本文暂且留坑。</p>
+<p>注：由于本人代码太丑，贴原博客代码</p>
+<h4 id="定义">定义</h4>
+<blockquote>
+<p>"#"是一个<span class="math inline">\(S\)</span>型后缀。</p>
+<p>如果后缀<span class="math inline">\(i\)</span>比后缀<span class="math inline">\(i+1\)</span>小，<span class="math inline">\(i\)</span>就是<span class="math inline">\(S\)</span>型后缀，否则就是<span class="math inline">\(L\)</span>型后缀。</p>
+</blockquote>
+<h4 id="性质">性质</h4>
+<h5 id="推论1若s_is_i1则sufi.typesufi1.type">推论1：若<span class="math inline">\(S_i=S_{i+1}\)</span>，则<span class="math inline">\(Suf(i).type=Suf(i+1).type\)</span></h5>
+<p>证明：</p>
+<p>由<span class="math inline">\(S_i=S_{i+1}\)</span>，则比较<span class="math inline">\(Suf(i)\)</span>与<span class="math inline">\(Suf(i+1)\)</span>相当于后移一位比较<span class="math inline">\(Suf(i+1)\)</span>与<span class="math inline">\(Suf(i+2)\)</span>。由后缀类型定义即可证得。</p>
+<p><strong>注：本文证明以提供思路为主要目的，故并不形式。</strong>希望大佬莫喷。</p>
+<h5 id="推论2若s_is_j且sufi.types且sufj.typel则sufisufj">推论2：若<span class="math inline">\(S_i=S_j\)</span>且<span class="math inline">\(Suf(i).type=S\)</span>且<span class="math inline">\(Suf(j).type=L\)</span>，则<span class="math inline">\(Suf(i)&gt;Suf(j)\)</span></h5>
+<p>证明：</p>
+<p>由<span class="math inline">\(S_i=S_j\)</span>，则须比较<span class="math inline">\(Suf(i+1)\)</span>和<span class="math inline">\(Suf(j+1)\)</span>。由于<span class="math inline">\(Suf(i).type=S\)</span>，则<span class="math inline">\(S_{i+1}\le S_i\)</span>，由于<span class="math inline">\(Suf(j).type=L\)</span>，则<span class="math inline">\(S_{j+1}\le S_j\)</span>。</p>
+<p>已知<span class="math inline">\(a_{j+1}\le a_j=a_i \le a_{i+1}\)</span>，若<span class="math inline">\(a_i \ne a_{i+1}\)</span>或<span class="math inline">\(a_j\ne a_{j+1}\)</span>，结论显然成立。</p>
+<p>若<span class="math inline">\(a_{j+1}=a_j=a_i=a_{i+1}\)</span>，由<strong>推论1</strong>，<span class="math inline">\(Suf(i+1).type=S,Suf(j+1).type=L\)</span>，问题递归转化为<span class="math inline">\(Suf(i+1)\)</span>与<span class="math inline">\(Suf(j+1)\)</span>。</p>
+<p>由数学归纳法，我们只用证明边界情况：字符串末尾。</p>
+<p>如果<span class="math inline">\(i&lt;j\)</span>，即类型为<span class="math inline">\(L\)</span>的<span class="math inline">\(j\)</span>判断到了边界，结论明显成立。</p>
+<p>如果<span class="math inline">\(i=j\)</span>，明显矛盾。</p>
+<p>如果<span class="math inline">\(i&gt;j\)</span>，则是<span class="math inline">\(i\)</span>碰到了边界，即从<span class="math inline">\(i\)</span>到<span class="math inline">\(n\)</span>全部是<span class="math inline">\(S\)</span>型后缀且相等，则不满足<span class="math inline">\(Suf(i)&lt;Suf(i+1)\)</span>，与<span class="math inline">\(S\)</span>型后缀定义矛盾。</p>
+<h4 id="代码实现">代码实现</h4>
+<p>我们可以先从右到左扫一遍，因为已经处理出来后面每一个后缀的类型，由<strong>推论1</strong>我们就可以求出当前位置的类型。时间复杂度<span class="math inline">\(\Theta(n)\)</span></p>
+<h3 id="诱导排序induce-sort">诱导排序(induce sort)</h3>
+<blockquote>
+<p>sais的核心是诱导排序，但是诱导排序的正确性是基于归纳法证明的.所以这个算法不太好理解，它很简单，但是你可能理解不了为什么它是对的。</p>
+</blockquote>
+<p>笔者就花了很长时间感性理解这个算法。从现在开始，建议不懂的可以暂时跳过，到后面出问题了或者读到末尾还没懂再回头看，或许会好理解不少。</p>
+<p>由<strong>推论2</strong>，易得在后缀数组中首字母相同时<span class="math inline">\(L\)</span>型后缀在<span class="math inline">\(S\)</span>型后缀前面。</p>
+<p>那么我们不妨可以将<span class="math inline">\(L\)</span>型后缀和<span class="math inline">\(S\)</span>型后缀<strong>分别排序</strong>，最后用归并排序的思想将后缀数组处理完成。</p>
+<p>现在我们从<span class="math inline">\(L\)</span>型后缀开始，思考一下如何对相同类型进行后缀排序。</p>
+<p>如果两个<span class="math inline">\(L\)</span>型后缀的首字母不一样，那么很好处理，否则我们就递归比较<span class="math inline">\((i+1,j+1)\)</span>。基于这个思想直接处理有点麻烦，不如我们：</p>
+<h4 id="总体思路">总体思路：</h4>
+<p><strong>假设</strong>已经知道了部分后缀的大小关系（后文重点介绍，学这个算法切忌着急），然后我们可以将已知的最小的后缀为<span class="math inline">\(Suf(i)\)</span>，那么如果<span class="math inline">\(Suf(i-1).type=L\)</span>，即<span class="math inline">\(Suf(i-1)&gt;Suf(i)\)</span>，将<span class="math inline">\(i-1\)</span>加入我们现在已知的集合中，然后将<span class="math inline">\(i\)</span>放入排序数组，并从集合删除，维护这个集合。最后我们可以知道与初始集合有关的所有<span class="math inline">\(L\)</span>型后缀之间的关系。</p>
+<blockquote>
+<p>如果用堆来维护刚才的过程，复杂度带log无法接受，但是我们有一个巧妙的做法可以完成上述过程。</p>
+</blockquote>
+<p><del><em>精益求精的shadowice巨佬！！！</em></del></p>
+<p><strong>（依然维持刚才的假设。）</strong>我们直接维护<span class="math inline">\(sa\)</span>数组，先记录每个首字母开头有多少后缀，便可以得知首字母为<span class="math inline">\(i\)</span>的后缀从<span class="math inline">\(sa\)</span>数组的哪里开始和结束。代码实现时先把<span class="math inline">\(sa\)</span>初始化为<span class="math inline">\(-1\)</span>。然后我们刚才插入的过程便可以直接在数组上维护！（具体代码实现部分会有介绍。）</p>
+<p>我们从左到右扫一遍<span class="math inline">\(sa\)</span>数组，如果第<span class="math inline">\(i\)</span>个位置已知，且<span class="math inline">\(Suf(sa_i-1).type=L\)</span>，我们就将<span class="math inline">\(L\)</span>型后缀<span class="math inline">\(Suf(sa_i-1)\)</span>插入到下一个位置。</p>
+<blockquote>
+<p>(你可以把插入的过程理解为将sa数组按照首字母划分为若干个桶，然后将这个后缀push到对应的桶里去，代码上写起来和倍增法的基排没啥区别）</p>
+</blockquote>
+<p>这样子，我们便可以<strong>在假设的基础上</strong>，用<span class="math inline">\(\Theta(n)\)</span>的时间复杂度实现上述算法。</p>
+<p>如果我们知道所有<span class="math inline">\(S\)</span>型后缀，我们便可以用上述算法得到所有<span class="math inline">\(L\)</span>型数组；对称的，知道所有<span class="math inline">\(L\)</span>型后缀，也可以得到所有<span class="math inline">\(S\)</span>型后缀。（这就是诱导排序的主体部分）</p>
+<p>原理很简单：以从<span class="math inline">\(S\)</span>型导入到<span class="math inline">\(L\)</span>型为例，由于最后一个不是<span class="math inline">\(L\)</span>型，每一个<span class="math inline">\(L\)</span>型后缀<span class="math inline">\(Suf(i)\)</span>都可以由<span class="math inline">\(Suf(i+1)\)</span>得到，因为是<span class="math inline">\(L\)</span>型，所以<span class="math inline">\(Suf(i)&gt;Suf(i+1)\)</span>是肯定成立的（具体类似于<strong>推论2</strong>，可以由<strong>推论1</strong>证明，有兴趣可以自证）。这样子，<span class="math inline">\(L\)</span>型后缀按顺序插入，不会有遗漏。</p>
+<p><span class="math inline">\(S\)</span>型后缀的加入则要换个顺序，道理是对称的。</p>
+<blockquote>
+<p>这样只要我们一开始掌握的后缀的大小信息无误并且足够的多，我们就能正确的还原出一个有序的sa数组，具体点，我们知道了关于S型的大小信息可以生成L型后缀的信息，知道了L型后缀的信息也可以还原出S型后缀的所有信息。</p>
+</blockquote>
+<p>但是，前提是<strong>刚才的假设</strong>……</p>
+<p>（只要你知道了诱导排序的作用就请先看下去，后面有lms子串诱导排序的模拟过程）</p>
+<h4 id="全文重点">全文重点！！！</h4>
+<h5 id="lms子串与lms后缀">lms子串与lms后缀</h5>
+<p>为了方便处理这个棘手的问题，我们先引入一个概念：lms子串</p>
+<p>诱导排序算法允许我们从<span class="math inline">\(L\)</span>诱导到<span class="math inline">\(S\)</span>，也允许从<span class="math inline">\(S\)</span>诱导到<span class="math inline">\(L\)</span>。但是诱导时并不需要全部的信息，我们只用扫描方向边界的信息即可。具体而言：</p>
+<blockquote>
+<p>把诱导排序算法的正确性证明念一遍，我们会发现关键在于递归比较<span class="math inline">\((Suf(i+1),Suf(j+1))\)</span>的大小关系这一段，如果<span class="math inline">\(Suf(i)\)</span>和都是<span class="math inline">\(Suf(j)\)</span>都是L型后缀，我们不能保证<span class="math inline">\((Suf(i+1),Suf(j+1))\)</span>都是L型后缀。</p>
+</blockquote>
+<p>但是，我们也仅仅需要左边是<span class="math inline">\(L\)</span>型后缀的<span class="math inline">\(S\)</span>型后缀的大小信息了。我们把这样的后缀定义为lms后缀(<strong>L</strong>eft-<strong>M</strong>ost-<strong>S</strong>uffix)。</p>
+<p>我们可以把诱导排序升级到2.0版本：<strong>假设我们已经知道了所有lms后缀的大小关系，</strong>先从lms后缀大小关系诱导出<span class="math inline">\(L\)</span>型后缀的大小关系，再诱导到<span class="math inline">\(S\)</span>型。这样我们就可以知道最终的答案了。</p>
+<p>由于已经有脑洞打开的神仙解决了这个难题假设，我们就可以省许多脑细胞了：</p>
+<p>虽然是<span class="math inline">\(\Theta(n)\)</span>，但是我们依然可以<strong>递归</strong>！！！</p>
+<p>显然，最多有<span class="math inline">\(\frac{n}{2}\)</span>个lms后缀，时间复杂度即是： <span class="math display">\[
+T(n)=T(\frac{n}{2})+\Theta(n)\notag
+\]</span> <del>但是我们还是不会递归问题</del></p>
+<p>我们定义lms子串为从左到右数第<span class="math inline">\(i\)</span>个lms后缀和<span class="math inline">\(i+1\)</span>个lms后缀之间的字符串。</p>
+<p><strong>例子：</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(i\)</span></th>
+<th><span class="math inline">\(1\)</span></th>
+<th><span class="math inline">\(2\)</span></th>
+<th><span class="math inline">\(3\)</span></th>
+<th><span class="math inline">\(4\)</span></th>
+<th><span class="math inline">\(5\)</span></th>
+<th><span class="math inline">\(6\)</span></th>
+<th><span class="math inline">\(7\)</span></th>
+<th><span class="math inline">\(8\)</span></th>
+<th><span class="math inline">\(9\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(S_i\)</span></td>
+<td>b</td>
+<td>a</td>
+<td>n</td>
+<td>a</td>
+<td>n</td>
+<td>a</td>
+<td>a</td>
+<td>s</td>
+<td>#</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(Suf(i).type\)</span></td>
+<td><span class="math inline">\(L\)</span></td>
+<td><span class="math inline">\(S\)</span></td>
+<td><span class="math inline">\(L\)</span></td>
+<td><span class="math inline">\(S\)</span></td>
+<td><span class="math inline">\(L\)</span></td>
+<td><span class="math inline">\(S\)</span></td>
+<td><span class="math inline">\(S\)</span></td>
+<td><span class="math inline">\(L\)</span></td>
+<td><span class="math inline">\(S\)</span></td>
+</tr>
+<tr class="odd">
+<td>是否为lms</td>
+<td></td>
+<td>是</td>
+<td></td>
+<td>是</td>
+<td></td>
+<td>是</td>
+<td></td>
+<td></td>
+<td>是</td>
+</tr>
+</tbody>
+</table>
+<p>lms子串为<span class="math inline">\([2,4]\)</span>、<span class="math inline">\([4,6]\)</span>和<span class="math inline">\([6,9]\)</span></p>
+<p><strong>注意</strong>：相邻两个lms子串会<strong>重叠一个字符</strong>。</p>
+<p>我们可以将lms子串离散化之后再按顺序拼成一个新的字符串，比如说对上面的lms子串进行离散化后变成<span class="math inline">\(2\)</span>、<span class="math inline">\(2\)</span>、<span class="math inline">\(1\)</span>。拼成字符串"221"。</p>
+<p>就是把一串字符离散成一个字符（往往读入完会进行第一次离散，所有字符变成数字处理）。</p>
+<blockquote>
+<p>但是其实并没有我们想的那么显然，我们接下来会严谨的证明离散化的正确性。</p>
+<p>首先先明确一下比较lms子串的规则，我们比较两个lms子串的时候对于每一个字符同时比较字符的字典序大小和所在位置后缀的<span class="math inline">\(S\)</span><span class="math inline">\(L\)</span>类型,举个例子，我们认为<span class="math inline">\((&#39;a&#39;,S)\)</span>和<span class="math inline">\((&#39;a&#39;,L)\)</span>是不相等的，尽管字符一样但是所在位置的<span class="math inline">\(S\)</span>和<span class="math inline">\(L\)</span>类型却不一样，同时我们认为<span class="math inline">\(S\)</span>类型大于<span class="math inline">\(L\)</span>类型。</p>
+<p>假设我们有两个lms后缀：第<span class="math inline">\(i\)</span>个lms后缀<span class="math inline">\(Suf(p_1)\)</span>和第<span class="math inline">\(j\)</span>个lms后缀<span class="math inline">\(Suf(p_2)\)</span>,现在我们想要比较两个后缀的大小，我们可以根据两个后缀在新字符串上第一位的字符（<span class="math inline">\(S_i\)</span>和<span class="math inline">\(S_j\)</span>）是否相等来进行分情况讨论。</p>
+<p><strong>case1:第一位的字符是相等的</strong></p>
+<p>我们发现新字符串上两个字符相等,等价于原来字符串上两个lms子串相等，那么既然两个lms子串相等了那么这两个子串的长度<span class="math inline">\(len\)</span>必然是一样的，因此我们可以将两个后缀同时去掉长度为<span class="math inline">\(len-1\)</span>的部分递归比较剩下的部分，在新字符串上也就是递归到了第<span class="math inline">\(i+1\)</span>位和第<span class="math inline">\(j+1\)</span>位，符合我们字符串比较的逻辑。</p>
+<p><strong>case2:第一位的字符是不等的</strong></p>
+<p>那么你可能会说:既然新字符串的两个字符都不一样了，就说明在原来的字符串上肯定有不一样的位，所以这种情况是显然的。</p>
+<p>那好像我们忽视了一种情况哎，两个lms子串代表的字符不一样是因为其中一个是另一个的前缀。</p>
+<p>这种情况下我们的算法就会锅掉，因为两个后缀明明没有分出大小我们就强行钦定一个大于另一个了。</p>
+<p>事实果真如此吗？</p>
+<p>答案是这种情况不存在，我们比较lms子串的规则是同时比较字符和<span class="math inline">\(S\)</span><span class="math inline">\(L\)</span>类型的后缀，在这种情况下不存在一个lms子串是另一个的前缀，因为一个lms子串的<span class="math inline">\(S\)</span><span class="math inline">\(L\)</span>类型必须是形如<span class="math inline">\(SSSSLLLLS\)</span>这样的，前面是一串<span class="math inline">\(S\)</span>中间是一串<span class="math inline">\(L\)</span>，最后是恰好一个<span class="math inline">\(S\)</span>，那么我们发现如果一个是另一个的前缀，两个串必然会在短的字符串的结尾处<span class="math inline">\(S\)</span><span class="math inline">\(L\)</span>类型不匹配，从而不存在这种情况。</p>
+</blockquote>
+<p>现在就是怎么离散的问题没解决了。</p>
+<h5 id="离散化lms子串与诱导排序之间的关系">离散化lms子串与诱导排序之间的关系</h5>
+<blockquote>
+<p>如果我们实现这一步使用的是<strong>基数排序</strong>那么我们将会得到传说中的KA-algorithm，但是这东西很慢啊……我们想想有没有什么优秀的排序做法。</p>
+</blockquote>
+<p><del><em>好吧……</em></del></p>
+<blockquote>
+<p>答案还是诱导排序，传统的诱导排序要求我们传一个有序的lms后缀数组进去，但是现在我们可以乱序传入lms后缀数组，当然诱导排序会返回一个错误的结果，</p>
+<p>但是我们断言，在返回的后缀数组当中关于lms后缀的<strong>子序列</strong>是按照每个lms后缀<strong>开头的lms子串</strong>为关键字进行排序的</p>
+</blockquote>
+<p>呃……有点难理解，我们举一个例子：</p>
+<p><span class="math inline">\(bananaas\)</span>#<del>怎么又是这个串</del></p>
+<p>lms后缀的数组：</p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(i\)</span></th>
+<th><span class="math inline">\(1\)</span></th>
+<th><span class="math inline">\(2\)</span></th>
+<th><span class="math inline">\(3\)</span></th>
+<th><span class="math inline">\(4\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(lms_i\)</span></td>
+<td><span class="math inline">\(2\)</span>（<span class="math inline">\(ananaas\)</span>#）</td>
+<td><span class="math inline">\(4\)</span>（<span class="math inline">\(anaas\)</span>#）</td>
+<td><span class="math inline">\(6\)</span>（<span class="math inline">\(aas\)</span>#）</td>
+<td><span class="math inline">\(9\)</span>（#）</td>
+</tr>
+</tbody>
+</table>
+<p>显然，初始是按起始位置排序的。</p>
+<p>记录每一个字符结束位置的<span class="math inline">\(sum\)</span>数组（其实就是桶数组的前缀和）（为了方便理解，初始时不进行离散化，即下标为字符）：</p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(i\)</span></th>
+<th><span class="math inline">\(&#39;\)</span>#<span class="math inline">\(&#39;\)</span></th>
+<th><span class="math inline">\(&#39;a&#39;\)</span></th>
+<th><span class="math inline">\(&#39;b&#39;\)</span></th>
+<th><span class="math inline">\(&#39;n&#39;\)</span></th>
+<th><span class="math inline">\(&#39;s&#39;\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(sum_i\)</span></td>
+<td><span class="math inline">\(1\)</span></td>
+<td><span class="math inline">\(5\)</span></td>
+<td><span class="math inline">\(6\)</span></td>
+<td><span class="math inline">\(8\)</span></td>
+<td><span class="math inline">\(9\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(sa\)</span>数组先按倒序（在<span class="math inline">\(sa\)</span>数组中便是正序）插入lms后缀：</p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(i\)</span></th>
+<th><span class="math inline">\(1\)</span></th>
+<th><span class="math inline">\(2\)</span></th>
+<th><span class="math inline">\(3\)</span></th>
+<th><span class="math inline">\(4\)</span></th>
+<th><span class="math inline">\(5\)</span></th>
+<th><span class="math inline">\(6\)</span></th>
+<th><span class="math inline">\(7\)</span></th>
+<th><span class="math inline">\(8\)</span></th>
+<th><span class="math inline">\(9\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(sa_i\)</span></td>
+<td><span class="math inline">\(9\)</span></td>
+<td><span class="math inline">\(-1\)</span></td>
+<td><span class="math inline">\(2\)</span></td>
+<td><span class="math inline">\(4\)</span></td>
+<td><span class="math inline">\(6\)</span></td>
+<td><span class="math inline">\(-1\)</span></td>
+<td><span class="math inline">\(-1\)</span></td>
+<td><span class="math inline">\(-1\)</span></td>
+<td><span class="math inline">\(-1\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>然后从左到右扫，插入<span class="math inline">\(L\)</span>型后缀（此步骤最好对照后文代码进行人工模拟，加深理解，这里只展示最后结果）：</p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(i\)</span></th>
+<th><span class="math inline">\(1\)</span></th>
+<th><span class="math inline">\(2\)</span></th>
+<th><span class="math inline">\(3\)</span></th>
+<th><span class="math inline">\(4\)</span></th>
+<th><span class="math inline">\(5\)</span></th>
+<th><span class="math inline">\(6\)</span></th>
+<th><span class="math inline">\(7\)</span></th>
+<th><span class="math inline">\(8\)</span></th>
+<th><span class="math inline">\(9\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(sa_i\)</span></td>
+<td><span class="math inline">\(9\)</span></td>
+<td><span class="math inline">\(-1\)</span></td>
+<td><span class="math inline">\(2\)</span></td>
+<td><span class="math inline">\(4\)</span></td>
+<td><span class="math inline">\(6\)</span></td>
+<td><span class="math inline">\(1\)</span></td>
+<td><span class="math inline">\(3\)</span></td>
+<td><span class="math inline">\(5\)</span></td>
+<td><span class="math inline">\(8\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>再根据<span class="math inline">\(L\)</span>型后缀扫回来：</p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(i\)</span></th>
+<th><span class="math inline">\(1\)</span></th>
+<th><span class="math inline">\(2\)</span></th>
+<th><span class="math inline">\(3\)</span></th>
+<th><span class="math inline">\(4\)</span></th>
+<th><span class="math inline">\(5\)</span></th>
+<th><span class="math inline">\(6\)</span></th>
+<th><span class="math inline">\(7\)</span></th>
+<th><span class="math inline">\(8\)</span></th>
+<th><span class="math inline">\(9\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(sa_i\)</span></td>
+<td><span class="math inline">\(9\)</span></td>
+<td><span class="math inline">\(6\)</span></td>
+<td><span class="math inline">\(2\)</span></td>
+<td><span class="math inline">\(4\)</span></td>
+<td><span class="math inline">\(7\)</span></td>
+<td><span class="math inline">\(1\)</span></td>
+<td><span class="math inline">\(3\)</span></td>
+<td><span class="math inline">\(5\)</span></td>
+<td><span class="math inline">\(8\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>很明显，已经lms后缀已经按照lms子串的大小排好序了。</p>
+<blockquote>
+<p>具体点来讲依然使用归纳法证明算法正确性。</p>
+<p>我们知道初始的时候的lms数组是乱的，因此归纳的初始条件直接被打破了。</p>
+<p>但是如果我们换个命题进行归纳呢？</p>
+<p>我们一开始传进去的lms数组，如果只看开头的第一个字母，在后缀数组当中是有序的。</p>
+<p>那么在第一轮诱导过后，对于每个L型后缀，如果只看这个后缀的开头到第一个S型字符位置的位置，他们也是有序的。</p>
+<p>在第二轮诱导过后，对于每个S型后缀，它们有序的部分恰好是这个后缀的开头到第一个lms字符所在的位置，如果这个后缀是一个lms型后缀那么这个后缀有序的部分是这个后缀开头的lms字符。</p>
+<p>所以我们证明了只需要再来一轮诱导排序就可以给所有lms子串排好序，然后我们就可以很轻松的完成离散化啦~</p>
+<p>至此我们完成了SA-IS算法的最后一块拼图，此时我们已经可以尝试实现sais算法了~</p>
+</blockquote>
+<p>呃……神仙思路有点快，我们具体地继续考虑一下离散化，既然已经按照lms子串的大小排好序了，离散化lms子串实际上就只用暴力比较在目前的<span class="math inline">\(sa\)</span>数组中相邻的lms子串的大小，就可以知道离散后lms子串对应的字符是否相等，大小顺序就按已经部分排好的<span class="math inline">\(sa\)</span>数组来。</p>
+<p>下面给出<a href="https://www.luogu.org/space/show?uid=56384" target="_blank" rel="noopener">shadowice1984</a>的代码<del>（注释也是她写的）</del>。</p>
+<h3 id="代码">代码</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/******************************************</span></span><br><span class="line"><span class="comment">这里的诱导排序函数由于需要传非常多的参数，所以使用了宏的方式来实现了一个函数</span></span><br><span class="line"><span class="comment">具体的实现方式可以看下面的inds(lms)这个宏</span></span><br><span class="line"><span class="comment">由于多行宏旁边写不了注释我会在行上面写注释</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">sais的算法流程 :</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">1.确定每个后缀的类型</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">2.确定第i个lms后缀的编号以及编号为i的后缀是第几个lms后缀</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">3.进行一次诱导排序给lms子串排序</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">4.扫描一遍得到的sa数组，生成用于递归的字符串</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">5.如果新字符串中的每一个字符都不同，后缀数组可以直接计算，此处不递归</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">6.否则递归进行一次sais</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">7.根据之前记录了第i个lms后缀的编号和返回的后缀数组计算lms后缀的顺序</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">8.进行一次诱导排序并返回</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">******************************************/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e6</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">gm</span><span class="params">(T*&amp; bas, <span class="keyword">int</span> siz, T*&amp; op)</span> </span>&#123;</span><br><span class="line">    op = bas;</span><br><span class="line">    bas += siz;<span class="comment">// 这里把内存提前申请好然后用指针分配内存</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//这里sum表示桶的位置，cur是sum的一份copy，避免每次都要做前缀和</span></span><br><span class="line"><span class="comment">// S型后缀的桶是倒着开的也要倒着扫，L型后缀的桶的是正着开的也要正着扫</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pus(x) (sa[cur[a[x]]--] = x)  <span class="comment">// 插入S型后缀</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pul(x) (sa[cur[a[x]]++] = x)  <span class="comment">//插入诱导排序</span></span></span><br><span class="line"><span class="comment">//诱导排序的宏，进行了两轮诱导过程:分别是从lms诱导到L和从L诱导到S</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> inds(lms)                                         \</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) sa[i] = <span class="number">-1</span>;              \</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) sum[i] = <span class="number">0</span>;              \</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) sum[a[i]]++;             \</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) sum[i] += sum[i - <span class="number">1</span>];    \</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) cur[i] = sum[i];         \</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = m; i &gt;= <span class="number">1</span>; i--) pus(lms[i]);             \</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) cur[i] = sum[i - <span class="number">1</span>] + <span class="number">1</span>; \</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)                          \</span><br><span class="line">        <span class="keyword">if</span> (sa[i] &gt; <span class="number">1</span> &amp;&amp; !tp[sa[i] - <span class="number">1</span>])                  \</span><br><span class="line">            pul(sa[i] - <span class="number">1</span>);                               \</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) cur[i] = sum[i];         \</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n; i &gt;= <span class="number">1</span>; i--)                          \</span><br><span class="line">        <span class="keyword">if</span> (sa[i] &gt; <span class="number">1</span> &amp;&amp; tp[sa[i] - <span class="number">1</span>])                   \</span><br><span class="line">            pus(sa[i] - <span class="number">1</span>);</span><br><span class="line"><span class="keyword">int</span> sa[N];</span><br><span class="line"><span class="keyword">int</span> sum[N];</span><br><span class="line"><span class="keyword">int</span> cur[N];</span><br><span class="line"><span class="keyword">int</span> rk[N];</span><br><span class="line"><span class="keyword">int</span> A_bas[N &lt;&lt; <span class="number">4</span>];</span><br><span class="line"><span class="keyword">int</span>* A_t;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">sais</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span>* a)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>* tp;            <span class="comment">//现开数组现分配内存</span></span><br><span class="line">    gm(A_t, n + <span class="number">1</span>, tp);</span><br><span class="line">    <span class="keyword">int</span>* p;</span><br><span class="line">    gm(A_t, n + <span class="number">2</span>, p);</span><br><span class="line">    tp[n] = <span class="number">1</span>;</span><br><span class="line">    <span class="comment">//倒着扫一遍确定后缀类型</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">1</span>; i--) tp[i] = (a[i] == a[i + <span class="number">1</span>]) ? tp[i + <span class="number">1</span>] : (a[i] &lt; a[i + <span class="number">1</span>]);</span><br><span class="line">    <span class="comment">//确定第i个lms后缀的编号和编号为i的后缀是第几个lms后缀</span></span><br><span class="line">    <span class="keyword">int</span> m = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) rk[i] = (tp[i] &amp;&amp; !tp[i - <span class="number">1</span>]) ? (p[++m] = i, m) : <span class="number">-1</span>;</span><br><span class="line">    <span class="comment">//进行一轮诱导排序，生成新的字符串</span></span><br><span class="line">    inds(p);</span><br><span class="line">    <span class="keyword">int</span> tot = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span>* a1;</span><br><span class="line">    gm(A_t, m + <span class="number">1</span>, a1);</span><br><span class="line">    p[m + <span class="number">1</span>] = n;</span><br><span class="line">    <span class="comment">//扫一遍对lms子串进行离散化</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>, x, y; i &lt;= n; i++)</span><br><span class="line">        <span class="keyword">if</span> ((x = rk[sa[i]]) != <span class="number">-1</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (tot == <span class="number">0</span> || p[x + <span class="number">1</span>] - p[x] != p[y + <span class="number">1</span>] - p[y]) <span class="comment">//如果长度不一致显然不等</span></span><br><span class="line">                tot++;</span><br><span class="line">            <span class="comment">//否则暴力for一遍比较两个lms串是否相等</span></span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> p1 = p[x], p2 = p[y]; p2 &lt;= p[y + <span class="number">1</span>]; p1++, p2++)</span><br><span class="line">                    <span class="keyword">if</span> ((a[p1] &lt;&lt; <span class="number">1</span> | tp[p1]) != (a[p2] &lt;&lt; <span class="number">1</span> | tp[p2])) &#123;</span><br><span class="line">                        tot++;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">            a1[y = x] = tot;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">if</span> (tot == m)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++) sa[a1[i]] = i; <span class="comment">//如果字符互不相同就直接计算后缀数组，否则递归</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        sais(m, a1);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++) a1[i] = p[sa[i]]; <span class="comment">//还原lms子串的顺序，进行诱导排序</span></span><br><span class="line">    inds(a1);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">char</span> mde[N];</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> a[N];</span><br><span class="line"><span class="keyword">int</span> tr[<span class="number">300</span>];</span><br><span class="line"><span class="keyword">char</span> buf[<span class="number">20</span>];</span><br><span class="line"><span class="keyword">int</span> cnt;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    A_t = A_bas;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>, mde + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">while</span> (mde[n + <span class="number">1</span>] != <span class="string">'\0'</span>) n++;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) tr[mde[i]] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">300</span>; i++) tr[i] += tr[i - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) a[i] = tr[mde[i]] + <span class="number">1</span>;</span><br><span class="line">    a[++n] = <span class="number">1</span>;</span><br><span class="line">    sais(n, a);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> tmp = sa[i];</span><br><span class="line">        <span class="keyword">while</span> (tmp) buf[++cnt] = tmp % <span class="number">10</span> + <span class="number">48</span>, tmp /= <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">while</span> (cnt) <span class="built_in">putchar</span>(buf[cnt--]);</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">' '</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  <span class="comment">//拜拜程序~</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="例题">例题</h2>
 <h3 id="洛谷p3809模板后缀数组">洛谷P3809<a href="https://www.luogu.org/problem/P3809" target="_blank" rel="noopener">【模板】后缀数组</a></h3>
 <p>思路：最基础的模板题</p>
@@ -829,7 +1144,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#sa-is算法"><span class="nav-number">1.</span> <span class="nav-text">SA-IS算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例题"><span class="nav-number">1.2.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#洛谷p3809模板后缀数组"><span class="nav-number">1.2.1.</span> <span class="nav-text">洛谷P3809【模板】后缀数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#洛谷p3809jsoi2007字符加密"><span class="nav-number">1.2.2.</span> <span class="nav-text">洛谷P3809【JSOI2007】字符加密</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#sa-is算法"><span class="nav-number">1.</span> <span class="nav-text">SA-IS算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体实现"><span class="nav-number">1.2.</span> <span class="nav-text">具体实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#s型后缀与l型后缀"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">\(S\)型后缀与\(L\)型后缀</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全文阅读注释"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">全文阅读注释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定义"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性质"><span class="nav-number">1.2.0.4.</span> <span class="nav-text">性质</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#推论1若s_is_i1则sufi.typesufi1.type"><span class="nav-number">1.2.0.4.1.</span> <span class="nav-text">推论1：若\(S_i=S_{i+1}\)，则\(Suf(i).type=Suf(i+1).type\)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#推论2若s_is_j且sufi.types且sufj.typel则sufisufj"><span class="nav-number">1.2.0.4.2.</span> <span class="nav-text">推论2：若\(S_i=S_j\)且\(Suf(i).type=S\)且\(Suf(j).type=L\)，则\(Suf(i)&gt;Suf(j)\)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现"><span class="nav-number">1.2.0.5.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#诱导排序induce-sort"><span class="nav-number">1.2.1.</span> <span class="nav-text">诱导排序(induce sort)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#总体思路"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">总体思路：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全文重点"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">全文重点！！！</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#lms子串与lms后缀"><span class="nav-number">1.2.1.2.1.</span> <span class="nav-text">lms子串与lms后缀</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#离散化lms子串与诱导排序之间的关系"><span class="nav-number">1.2.1.2.2.</span> <span class="nav-text">离散化lms子串与诱导排序之间的关系</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.2.2.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例题"><span class="nav-number">1.3.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#洛谷p3809模板后缀数组"><span class="nav-number">1.3.1.</span> <span class="nav-text">洛谷P3809【模板】后缀数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#洛谷p3809jsoi2007字符加密"><span class="nav-number">1.3.2.</span> <span class="nav-text">洛谷P3809【JSOI2007】字符加密</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -869,7 +1184,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">21k</span>
+    <span title="站点总字数">20k</span>
   
 
   
@@ -878,7 +1193,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">19 分钟</span>
+    <span title="站点阅读时长">18 分钟</span>
   
 </div>
 
@@ -1521,9 +1836,7 @@
   
 
 
-<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
-
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -1540,5 +1853,7 @@
 <script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end --></body>
+<!-- hexo-inject:end -->
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
