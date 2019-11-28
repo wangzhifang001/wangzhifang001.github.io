@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -98,7 +98,19 @@
   
 
 
-
+<head><meta name="generator" content="Hexo 3.8.0">
+#JavaScript
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
 
   <meta name="description" content="NOIP2018D1T3赛道修建 题解  题目大意 题目链接 一棵树，给定每一条边的长度，要从其中选出\(m\)条不重复的链，使得链长的最小值最大。（如果不太习惯“链”，可以查看括号中的注释，否则请忽略大部分括号） 简要分析 通过查看题解题目要求最小值最大，我们可以想到二分答案。 设需要判定的答案为\(ans\)。 记以\(i\)为\(LCA\)的最优半链长度为\(f_{i}\)。">
 <meta name="keywords" content="题解,NOIP,二分答案,树上dp,贪心">
@@ -119,7 +131,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/post/【题解】【NOIP2018D1T3】赛道修建/">
+  <link rel="canonical" href="http://yoursite.com/post/【题解】【NOIP2018D1T3】赛道修建/"/>
 
 
 
@@ -166,7 +178,7 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</noscript>
 
 </head>
 
@@ -229,7 +241,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>博客主页</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>博客主页</a>
 
   </li>
         
@@ -246,7 +258,7 @@
 
     
 
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于作者</a>
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>关于作者</a>
 
   </li>
         
@@ -263,7 +275,7 @@
 
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>文档标签</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>文档标签</a>
 
   </li>
         
@@ -280,7 +292,7 @@
 
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>博文索引</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>博文索引</a>
 
   </li>
         
@@ -297,7 +309,7 @@
 
     
 
-    <a href="/oj/" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>OJ跳转</a>
+    <a href="/oj/" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br/>OJ跳转</a>
 
   </li>
         
@@ -314,7 +326,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>文章一览</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>文章一览</a>
 
   </li>
 
@@ -325,7 +337,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
         </li>
       
     </ul>
@@ -345,7 +357,9 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -395,16 +409,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/【题解】【NOIP2018D1T3】赛道修建/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/【题解】【NOIP2018D1T3】赛道修建/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wangzhifang001">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/main.png">
+      <meta itemprop="name" content="wangzhifang001"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/main.png"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wangzhifang's blog">
+      <meta itemprop="name" content="wangzhifang's blog"/>
     </span>
 
     
@@ -490,7 +504,8 @@
 
           
             <span class="post-meta-divider">|</span>
-            <span class="post-meta-item-icon">
+            <span class="post-meta-item-icon"
+            >
             <i class="fa fa-eye"></i>
              阅读次数： 
             <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
@@ -647,7 +662,7 @@
       
       <center>
         <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
-          <img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png">
+          <img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" />
         </a>
       </center>
       
@@ -725,7 +740,9 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/main.png" alt="wangzhifang001">
+              <img class="site-author-image" itemprop="image"
+                src="/images/main.png"
+                alt="wangzhifang001"/>
             
               <p class="site-author-name" itemprop="name">wangzhifang001</p>
               <div class="site-description motion-element" itemprop="description"></div>
@@ -1020,7 +1037,7 @@
     
     
   
-  <script color="0,0,255" opacity="0" zindex="-1" count="1000" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script color='0,0,255' opacity='0' zIndex='-1' count='1000' src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
 

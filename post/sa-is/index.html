@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -98,7 +98,19 @@
   
 
 
-
+<head><meta name="generator" content="Hexo 3.8.0">
+#JavaScript
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
 
   <meta name="description" content="SA-IS算法 前言 先丢个洛谷日报的链接SA-IS算法。一下慢慢解读抄袭这篇博客。本文也可以与shadowice1984的洛谷日报同步阅读，增加解释疑惑。 SA-IS算法，全名Suffix-Array-Induce-Sort。 induce sort 指的是一个叫诱导排序的算法（下文重点）。SA-IS算法的精髓便是基于根据两个后缀首字母是否相同与其他已知信息来比较后缀的诱导排序。基于诱导排">
 <meta name="keywords" content="sa-is,模板,算法">
@@ -119,7 +131,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/post/sa-is/">
+  <link rel="canonical" href="http://yoursite.com/post/sa-is/"/>
 
 
 
@@ -166,7 +178,7 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</noscript>
 
 </head>
 
@@ -229,7 +241,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>博客主页</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>博客主页</a>
 
   </li>
         
@@ -246,7 +258,7 @@
 
     
 
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于作者</a>
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>关于作者</a>
 
   </li>
         
@@ -263,7 +275,7 @@
 
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>文档标签</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>文档标签</a>
 
   </li>
         
@@ -280,7 +292,7 @@
 
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>博文索引</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>博文索引</a>
 
   </li>
         
@@ -297,7 +309,7 @@
 
     
 
-    <a href="/oj/" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>OJ跳转</a>
+    <a href="/oj/" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br/>OJ跳转</a>
 
   </li>
         
@@ -314,7 +326,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>文章一览</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>文章一览</a>
 
   </li>
 
@@ -325,7 +337,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
         </li>
       
     </ul>
@@ -345,7 +357,9 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -395,16 +409,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/sa-is/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/sa-is/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wangzhifang001">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/main.png">
+      <meta itemprop="name" content="wangzhifang001"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/main.png"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wangzhifang's blog">
+      <meta itemprop="name" content="wangzhifang's blog"/>
     </span>
 
     
@@ -490,7 +504,8 @@
 
           
             <span class="post-meta-divider">|</span>
-            <span class="post-meta-item-icon">
+            <span class="post-meta-item-icon"
+            >
             <i class="fa fa-eye"></i>
              阅读次数： 
             <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
@@ -933,7 +948,7 @@ T(n)=T(\frac{n}{2})+\Theta(n)\notag
       
       <center>
         <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
-          <img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png">
+          <img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" />
         </a>
       </center>
       
@@ -1007,7 +1022,9 @@ T(n)=T(\frac{n}{2})+\Theta(n)\notag
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/main.png" alt="wangzhifang001">
+              <img class="site-author-image" itemprop="image"
+                src="/images/main.png"
+                alt="wangzhifang001"/>
             
               <p class="site-author-name" itemprop="name">wangzhifang001</p>
               <div class="site-description motion-element" itemprop="description"></div>
@@ -1156,7 +1173,7 @@ T(n)=T(\frac{n}{2})+\Theta(n)\notag
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#sa-is算法"><span class="nav-number">1.</span> <span class="nav-text">SA-IS算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体实现"><span class="nav-number">1.2.</span> <span class="nav-text">具体实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#s型后缀与l型后缀"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">\(S\)型后缀与\(L\)型后缀</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全文阅读注释"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">全文阅读注释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定义"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性质"><span class="nav-number">1.2.0.4.</span> <span class="nav-text">性质</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#推论1若s_is_i1则sufi.typesufi1.type"><span class="nav-number">1.2.0.4.1.</span> <span class="nav-text">推论1：若\(S_i=S_{i+1}\)，则\(Suf(i).type=Suf(i+1).type\)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#推论2若s_is_j且sufi.types且sufj.typel则sufisufj"><span class="nav-number">1.2.0.4.2.</span> <span class="nav-text">推论2：若\(S_i=S_j\)且\(Suf(i).type=S\)且\(Suf(j).type=L\)，则\(Suf(i)&gt;Suf(j)\)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现"><span class="nav-number">1.2.0.5.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#诱导排序induce-sort"><span class="nav-number">1.2.1.</span> <span class="nav-text">诱导排序(induce sort)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#总体思路"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">总体思路：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全文重点"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">全文重点！！！</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#lms子串与lms后缀"><span class="nav-number">1.2.1.2.1.</span> <span class="nav-text">lms子串与lms后缀</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#离散化lms子串与诱导排序之间的关系"><span class="nav-number">1.2.1.2.2.</span> <span class="nav-text">离散化lms子串与诱导排序之间的关系</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.2.2.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例题"><span class="nav-number">1.3.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#洛谷p3809模板后缀数组"><span class="nav-number">1.3.1.</span> <span class="nav-text">洛谷P3809【模板】后缀数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#洛谷p3809jsoi2007字符加密"><span class="nav-number">1.3.2.</span> <span class="nav-text">洛谷P3809【JSOI2007】字符加密</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#sa-is算法"><span class="nav-number">1.</span> <span class="nav-text">SA-IS算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体实现"><span class="nav-number">1.2.</span> <span class="nav-text">具体实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#s型后缀与l型后缀"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">\(S\)型后缀与\(L\)型后缀</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全文阅读注释"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">全文阅读注释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定义"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性质"><span class="nav-number">1.2.0.4.</span> <span class="nav-text">性质</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#推论1若s_is_i1则sufi.typesufi1.type"><span class="nav-number">1.2.0.4.1.</span> <span class="nav-text">推论1：若\(S_i=S_{i+1}\)，则\(Suf(i).type=Suf(i+1).type\)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#推论2若s_is_j且sufi.types且sufj.typel则sufisufj"><span class="nav-number">1.2.0.4.2.</span> <span class="nav-text">推论2：若\(S_i=S_j\)且\(Suf(i).type=S\)且\(Suf(j).type=L\)，则\(Suf(i)&gt;Suf(j)\)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现"><span class="nav-number">1.2.0.5.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#诱导排序induce-sort"><span class="nav-number">1.2.1.</span> <span class="nav-text">诱导排序(induce sort)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#总体思路"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">总体思路：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全文重点"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">全文重点！！！</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#lms子串与lms后缀"><span class="nav-number">1.2.1.2.1.</span> <span class="nav-text">lms子串与lms后缀</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#离散化lms子串与诱导排序之间的关系"><span class="nav-number">1.2.1.2.2.</span> <span class="nav-text">离散化lms子串与诱导排序之间的关系</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.2.2.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例题"><span class="nav-number">1.3.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#洛谷p3809模板后缀数组"><span class="nav-number">1.3.1.</span> <span class="nav-text">洛谷P3809【模板】后缀数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#洛谷p3809jsoi2007字符加密"><span class="nav-number">1.3.2.</span> <span class="nav-text">洛谷P3809【JSOI2007】字符加密</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -1302,7 +1319,7 @@ T(n)=T(\frac{n}{2})+\Theta(n)\notag
     
     
   
-  <script color="0,0,255" opacity="0" zindex="-1" count="1000" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script color='0,0,255' opacity='0' zIndex='-1' count='1000' src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
 
